@@ -1,0 +1,52 @@
+Part 3 — How to use the VSCode agent to maximise work + save tokens
+These are the exact habits that make the biggest difference:
+Start every session by typing this exact message to the agent:
+Read CLAUDE.md and PROGRESS.md. 
+Tell me what phase we are on and what the next task is.
+Do not write any code yet.
+This costs almost zero tokens and syncs the agent perfectly.
+Give tasks in this format — it prevents the agent from guessing and wasting tokens:
+Task: Build the member registration form
+File to create: /app/(auth)/register/page.tsx
+Read first: skills/SECURITY.md, skills/SUPABASE.md
+Requirements: Zod validation, Supabase insert, status=pending, 
+              redirect to "awaiting approval" page on success
+Do not touch any other files.
+After each task is done, tell it:
+Update PROGRESS.md — mark [x] for register page done. 
+Add a note: "register form uses server action, Zod schema in lib/validators.ts"
+Then stop.
+When you hit an error, paste only the error message, not your whole file:
+Error: [paste exact error here]
+File: /app/(auth)/register/page.tsx  line 42
+Fix only that line. Do not rewrite the file.
+
+
+
+🔐 CREDENTIALS TEMPLATE (Store in .env.local ONLY — DO NOT COMMIT)
+
+Supabase: https://ndqacuqchzgtkceaflke.supabase.co
+- NEXT_PUBLIC_SUPABASE_URL: [Get from Supabase Dashboard → Settings → API]
+- NEXT_PUBLIC_SUPABASE_ANON_KEY: [Get from Supabase Dashboard → Settings → API]
+- SUPABASE_SERVICE_ROLE_KEY: [Get from Supabase Dashboard → Settings → API → Service role key]
+
+Stripe: https://dashboard.stripe.com
+- NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: pk_test_*****
+- STRIPE_SECRET_KEY: sk_test_*****
+
+Cloudinary: https://cloudinary.com
+- NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: [Your cloud name]
+- CLOUDINARY_API_KEY: [Your API key]
+- CLOUDINARY_API_SECRET: [Your API secret]
+
+Google OAuth: https://console.cloud.google.com
+- NEXT_PUBLIC_GOOGLE_CLIENT_ID: [Your client ID].apps.googleusercontent.com
+- GOOGLE_CLIENT_SECRET: [Your client secret]
+
+🚨 IMPORTANT: Add .env.local to .gitignore — DO NOT COMMIT SECRETS
+
+
+▲ Next.js 16.2.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.2.13:3000
+- Environments: .env.local
